@@ -1,0 +1,17 @@
+<app-header></app-header>
+<app-filter></app-filter>
+
+@if(showNoticeForm) {
+  <div class="modal-overlay" (click)="closeForm()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <notice-form
+        [notice]="editingNotice"
+        [currentUser]="currentUser"
+        (formSubmit)="onFormSubmit()"
+        (formCancel)="closeForm()"
+      ></notice-form>
+    </div>
+  </div>
+} @else {
+<notice-list></notice-list>
+}

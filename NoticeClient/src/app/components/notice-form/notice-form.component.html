@@ -1,0 +1,145 @@
+<div class="notice-form-container">
+  <div class="form-header">
+    <h2>{{ isEditing ? 'edit notice' : 'add new notice' }}</h2>
+    <button type="button" class="close-btn" (click)="onCancel()" title="close">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <form [formGroup]="noticeForm" (ngSubmit)="onSubmit()" novalidate>
+    <!-- Error Message -->
+    <div *ngIf="error" class="alert alert-danger">
+      <i class="fas fa-exclamation-triangle"></i>
+      {{ error }}
+    </div>
+
+    <!-- Title Field -->
+    <div class="form-group">
+      <label for="title">title</label>
+      <input
+        id="title"
+        type="text"
+        class="form-control"
+        formControlName="title"
+        [class.is-invalid]="noticeForm.get('title')?.errors && noticeForm.get('title')?.touched"
+        placeholder="input title">
+      <div class="invalid-feedback" *ngIf="noticeForm.get('title')?.errors && noticeForm.get('title')?.touched">
+        {{ getFieldError('title') }}
+      </div>
+      <small class="form-text text-muted">
+        {{ noticeForm.get('title')?.value?.length || 0 }}/200 תווים
+      </small>
+    </div>
+
+    <!-- Content Field -->
+    <div class="form-group">
+      <label for="content">תוכן המודעה *</label>
+      <textarea
+        id="content"
+        class="form-control"
+        formControlName="content"
+        rows="6"
+        [class.is-invalid]="noticeForm.get('content')?.errors && noticeForm.get('content')?.touched"
+        placeholder="הכנס את תוכן המודעה כאן..."></textarea>
+      <div class="invalid-feedback" *ngIf="noticeForm.get('content')?.errors && noticeForm.get('content')?.touched">
+        {{ getFieldError('content') }}
+      </div>
+      <small class="form-text text-muted">
+        {{ noticeForm.get('content')?.value?.length || 0 }}/2000 תווים
+      </small>
+    </div>
+
+    <!-- Author Field -->
+    <div class="form-group">
+      <label for="author">שם המחבר *</label>
+      <input
+        id="author"
+        type="text"
+        class="form-control"
+        formControlName="author"
+        [class.is-invalid]="noticeForm.get('author')?.errors && noticeForm.get('author')?.touched"
+        placeholder="הכנס את שמך">
+      <div class="invalid-feedback" *ngIf="noticeForm.get('author')?.errors && noticeForm.get('author')?.touched">
+        {{ getFieldError('author') }}
+      </div>
+    </div>
+
+    <!-- Location Section -->
+    <div class="form-group">
+      <div class="custom-control custom-checkbox">
+        <input
+          type="checkbox"
+          class="custom-control-input"
+          id="hasLocation"
+          formControlName="hasLocation">
+        <label class="custom-control-label" for="hasLocation">
+          הוסף מיקום למודעה
+        </label>
+      </div>
+    </div>
+
+    <!-- Location Coordinates -->
+    <div *ngIf="noticeForm.get('hasLocation')?.value" class="location-section">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="latitude">Latitude</label>
+            <input
+              id="latitude"
+              type="number"
+              step="any"
+              class="form-control"
+              formControlName="latitude"
+              [class.is-invalid]="noticeForm.get('latitude')?.errors && noticeForm.get('latitude')?.touched"
+              placeholder="32.0853"
+              min="-90"
+              max="90">
+            <div class="invalid-feedback" *ngIf="noticeForm.get('latitude')?.errors && noticeForm.get('latitude')?.touched">
+              {{ getFieldError('latitude') }}
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="longitude">Longitude</label>
+            <input
+              id="longitude"
+              type="number"
+              step="any"
+              class="form-control"
+              formControlName="longitude"
+              [class.is-invalid]="noticeForm.get('longitude')?.errors && noticeForm.get('longitude')?.touched"
+              placeholder="34.7818"
+              min="-180"
+              max="180">
+            <div class="invalid-feedback" *ngIf="noticeForm.get('longitude')?.errors && noticeForm.get('longitude')?.touched">
+              {{ getFieldError('longitude') }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <small class="form-text text-muted">
+        <i class="fas fa-info-circle"></i>
+         For example: latitude - 32.0853, longitude - 34.7818
+      </small>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="onCancel()"
+        [disabled]="isSubmitting">
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="noticeForm.invalid || isSubmitting">
+        <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm" role="status"></span>
+        {{ isEditing ? 'Update Notice' : 'Add Notice' }}
+      </button>
+    </div>
+  </form>
+</div>

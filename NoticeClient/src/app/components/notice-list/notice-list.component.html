@@ -1,0 +1,85 @@
+<div class="notice-board-container">
+  <!-- Loading State -->
+  @if(loading) {
+  <div class="loading-section">
+    <div class="spinner"></div>
+    <p>loading...</p>
+  </div>
+  }
+
+  <!-- Error State -->
+  @if(error) {
+  <div class="error-section">
+    <div class="alert alert-danger">
+      <i class="fas fa-exclamation-triangle"></i>
+      {{ error }}
+      <button class="btn btn-outline-danger btn-sm" (click)="loadNotices()">load again</button>
+    </div>
+  </div>
+  }
+
+  <!-- Notices Grid -->
+  @if (notices && notices.length > 0) {
+  <div class="notices-grid">
+    @for(notice of notices | searchFilter : searchTerm : filterBy : filterValue; track notice.id) {
+    <div class="notice-card" [class.my-notice]="canEditOrDelete(notice)">
+      <div class="notice-header">
+        <h3 class="notice-title">{{ notice.title }}</h3>
+        <div class="notice-actions" *ngIf="canEditOrDelete(notice)">
+          <button
+            class="btn btn-sm btn-outline-primary"
+            (click)="openEditForm(notice)"
+            title="edit"
+          >
+            <i class="fas fa-edit"></i>
+          </button>
+          <button
+            class="btn btn-sm btn-outline-danger"
+            (click)="deleteNotice(notice)"
+            title="delete"
+          >
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+      <div class="notice-content">
+        <p>{{ notice.content }}</p>
+      </div>
+      <div class="notice-footer">
+        <div class="notice-meta">
+          <span class="author">
+            <i class="fas fa-user"></i>
+            {{ notice.author }}
+          </span>
+          <span class="date">
+            <i class="fas fa-clock"></i>
+            {{ formatDate(notice.createdAt) }}
+          </span>
+          <span *ngIf="notice.location" class="location">
+            <i class="fas fa-map-marker-alt"></i>
+            עם מיקום
+          </span>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  }
+
+  <!-- Empty State -->
+  @if(!loading && !error && (notices | searchFilter : searchTerm : filterBy : filterValue).length
+  === 0) {
+  <div class="empty-state">
+    <div class="empty-content">
+      <i class="fas fa-clipboard-list empty-icon"></i>
+      <h3>Notices not found</h3>
+      @if(searchTerm || filterValue !== 'all') {
+      <p>Try changing the search or filter conditions</p>
+      } @if(!searchTerm && filterValue === 'all') {
+      <p>Be the first to add a notice!</p>
+      }
+      <button class="btn btn-primary" (click)="openCreateForm()">Add First Notice</button>
+    </div>
+  </div>
+  }
+</div>
