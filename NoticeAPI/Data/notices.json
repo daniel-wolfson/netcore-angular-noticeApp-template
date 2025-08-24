@@ -1,0 +1,13 @@
+[
+  {
+    "id": "dcfdda0a-c867-4295-ad57-8a6093421f16",
+    "createdAt": "2025-08-24T11:14:33.0841886Z",
+    "title": "title",
+    "content": "content",
+    "author": "author",
+    "location": {
+      "latitude": 0,
+      "longitude": 0
+    }
+  }
+]

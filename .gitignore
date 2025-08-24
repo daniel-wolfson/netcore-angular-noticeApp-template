@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/ProductApi/bin/Debug/netcoreapp3.1/runtimes/win/lib/netstandard2.0/System.ServiceProcess.ServiceController.dll
+/ProductApi/bin/Debug/netcoreapp3.1
+/ProductApi/obj/Release/netcoreapp3.1
+/ProductClient/.angular/cache/13.2.2
+/ProductApi/obj
+/ProductClient/node_modules
+/ProductClient/package-lock.json
+/NoticeAPI/bin/Debug/net8.0
+/NoticeAPI/obj
+/NoticeAPI.Tests/bin/Debug/net8.0
+/NoticeAPI.Tests/obj
+/NoticeClient/obj/Debug
