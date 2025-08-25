@@ -1,0 +1,121 @@
+.search-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 1rem 5%;
+}
+.search-bar-add {
+	flex: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.search-bar-filter {
+	flex: 10;
+	display: flex;
+	align-items:center;
+	justify-content: space-around;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+@media screen and (min-width: 768px) {
+	.search-bar {
+		padding: 1rem 20%;
+	}
+}
+
+.search-bar-add button {
+	height: 50px;
+	border-radius: 50%;
+	border-width: 0px;
+	width: 50px;
+	background: linear-gradient(90deg, #ff9800 80%, #ffa726 100%);
+	box-shadow: 2px 3px 5px rgba(0,0,0,0.6);
+	/* Prepare for smooth scale animation */
+	transform: scale(1);
+	transition: transform .18s ease, box-shadow .18s ease;
+}
+.search-bar-add button:hover,
+.search-bar-add button:focus-visible {
+	transform: scale(1.05);
+	box-shadow: 3px 5px 9px rgba(0,0,0,0.45);
+}
+.search-bar-add button .fas {
+	font-size: 1.5em;
+	color: #fff;
+	cursor: pointer;
+}
+
+.filter-property-select {
+	flex: 0 0 auto;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	font-size: 1rem;
+	background: #f7f7f7;
+	height: 40px;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	background: linear-gradient(90deg, #ff9800 80%, #ffa726 100%);
+
+	option {
+		color: #000;
+		font-weight: normal;
+	}
+}
+
+.search-bar-text {
+	flex: 1 1 auto;
+	border: none;
+	outline: none;
+	font-size: 1.1rem;
+	background: transparent;
+	padding-left: 1rem;
+	width: calc(100% - 20px);
+	
+	&::placeholder { /* Standard */
+    color: #9aa0a6;
+    font-style: italic;
+    opacity: 1;            // ensure full color (Firefox lowers default)
+  }
+  &::-webkit-input-placeholder { color: #9aa0a6; font-style: italic; }
+  &:-ms-input-placeholder       { color: #9aa0a6; font-style: italic; }
+  &::-ms-input-placeholder      { color: #9aa0a6; font-style: italic; }
+  &:-moz-placeholder            { color: #9aa0a6; font-style: italic; opacity:1; }
+  &::-moz-placeholder           { color: #9aa0a6; font-style: italic; opacity:1; }
+}
+
+.go-btn {
+	flex: 0 0 auto;
+	background: linear-gradient(90deg, #ff9800 80%, #ffa726 100%);
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+	font-weight: bold;
+	font-size: 1.1rem;
+	padding: 0.35rem 1.2rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+	
+
+}
+.go-btn:hover {
+	background: linear-gradient(90deg, #ffa726 80%, #ff9800 100%);
+}
+.go-btn .arrow {
+	font-size: 1.2em;
+	margin-left: 4px;
+}
+
+// Optional: style for the search icon if you add it back
+.search-icon img {
+	width: 22px;
+	height: 22px;
+	vertical-align: middle;
+	margin-right: 8px;
+}

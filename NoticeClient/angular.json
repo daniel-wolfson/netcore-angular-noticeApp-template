@@ -29,10 +29,7 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              { "glob": "**/*", "input": "public" }
             ],
             "styles": [
               "src/styles.css"
@@ -41,16 +38,8 @@
           "configurations": {
             "production": {
               "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
-                }
+                { "type": "initial", "maximumWarning": "500kB", "maximumError": "1MB" },
+                { "type": "anyComponentStyle", "maximumWarning": "4kB", "maximumError": "8kB" }
               ],
               "outputHashing": "all"
             },
@@ -65,17 +54,11 @@
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
-            "production": {
-              "buildTarget": "AngularClient:build:production"
-            },
-            "development": {
-              "buildTarget": "AngularClient:build:development"
-            }
+            "production": { "buildTarget": "AngularClient:build:production" },
+            "development": { "buildTarget": "AngularClient:build:development" }
           },
           "defaultConfiguration": "development",
-          "options": {
-            "port": 62771
-          }
+          "options": { "port": 4200 }
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"

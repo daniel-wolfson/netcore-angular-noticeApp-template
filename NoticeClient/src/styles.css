@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@fortawesome/fontawesome-free/css/all.css';
+
+h1 {
+  color: #1976d2;
+}
+p {
+  font-size: 1em;
+}
+.form-control {
+  &::placeholder {
+    color: #999;
+    font-style: italic;
+  }
+}

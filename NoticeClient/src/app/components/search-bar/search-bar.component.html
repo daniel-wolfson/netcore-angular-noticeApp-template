@@ -1,0 +1,27 @@
+<div class="search-bar">
+  <div class="search-bar-filter">
+    <select
+      class="filter-property-select"
+      (change)="onSelectChange($event)"
+      title="Select property to filter by"
+    >
+      @for(noticeProperty of noticeProperties; track $index) {
+      <option value="{{ noticeProperty[1] }}">{{ noticeProperty[0] }}</option>
+      }
+    </select>
+    <input
+      #searchBar
+      type="text"
+      class="search-bar-text"
+      placeholder="..."
+      [value]="searchTerm"
+      (input)="onSearchChange($event)"
+    />
+    <button class="go-btn" (click)="onGoClick()">go <span class="arrow">➔</span></button>
+  </div>
+  <div class="search-bar-add">
+    <button type="button" class="btn btn-primary" (click)="createNotice()" title="Add new notice">
+      <div class="fas fa-add"></div>
+    </button>
+  </div>
+</div>

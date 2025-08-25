@@ -39,6 +39,7 @@ namespace NoticeAPI.Tests
                 Title = "newNotice Test",
                 Content = "newNotice Test",
                 Author = "Test Author",
+                LocationInfo = "Tel aviv",
                 Location = new Location() { Latitude = 32.0853, Longitude = 34.7818 }
             };
 

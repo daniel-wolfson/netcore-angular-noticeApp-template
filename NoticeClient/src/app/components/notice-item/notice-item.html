@@ -1,0 +1,53 @@
+<div class="notice-card" [class.my-notice]="canEditOrDelete(notice)">
+  <div class="notice-header">
+    <h3 class="notice-title">{{ notice.title }}</h3>
+  </div>
+  <div class="notice-content">
+    <p>{{ notice.content }}</p>
+  </div>
+
+  <div class="notice-footer">
+    <div class="notice-meta">
+      <span class="author">
+        <i class="fas fa-user"></i>
+        {{ notice.author }}
+      </span>
+      <span class="date">
+        <i class="fas fa-clock"></i>
+        {{ formatDate(notice.createdAt) }}
+      </span>
+      @if (notice.updatedAt) {
+      <span class="updated">
+        <i class="fas fa-pencil-alt"></i>
+        {{ formatDate(notice.updatedAt) }}
+      </span>
+      } @if (notice.locationInfo) {
+      <span class="location">
+        <i class="fas fa-map-marker-alt"></i>
+        location: {{ notice.locationInfo }}
+      </span>
+      }
+    </div>
+
+    @if (canEditOrDelete(notice)) {
+    <div class="notice-actions">
+      <button
+        type="button"
+        class="btn btn-sm btn-outline-primary"
+        (click)="editNotice(notice)"
+        title="edit"
+      >
+        <i class="fas fa-edit"></i>Edit
+      </button>
+      <button
+        type="button"
+        class="btn btn-sm btn-outline-danger"
+        (click)="deleteNotice(notice)"
+        title="delete"
+      >
+        <i class="fas fa-trash"></i>Delete
+      </button>
+    </div>
+    }
+  </div>
+</div>

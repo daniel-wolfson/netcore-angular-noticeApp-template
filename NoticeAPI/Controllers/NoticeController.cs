@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NoticeAPI.Interfaces;
 using NoticeAPI.Models;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace NoticeAPI.Controllers
 {
@@ -18,6 +19,7 @@ namespace NoticeAPI.Controllers
         /// <returns>List of all notices</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [SwaggerOperation(Summary = "Get all notices", Description = "Returns a list of all notices.")]
         public async Task<ActionResult<List<Notice>>> GetAllNotices()
         {
             try
@@ -40,6 +42,7 @@ namespace NoticeAPI.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Get a notice by ID", Description = "Returns a notice by ID.")]
         public async Task<ActionResult<Notice>> GetNotice(Guid id)
         {
             try
@@ -67,7 +70,7 @@ namespace NoticeAPI.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-
+        [SwaggerOperation(Summary = "Create a new notice", Description = "Returns a new notice.")]
         public async Task<ActionResult<Notice>> CreateNotice([FromBody] NoticeData notice)
         {
             if (!ModelState.IsValid)
@@ -94,6 +97,7 @@ namespace NoticeAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Update an existing notice", Description = "Returns a Updated notice.")]
         public async Task<ActionResult<Notice>> UpdateNotice(Guid id, [FromBody] NoticeData notice)
         {
             if (!ModelState.IsValid)
@@ -127,6 +131,7 @@ namespace NoticeAPI.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Summary = "Delete a notice")]
         public async Task<IActionResult> DeleteNotice(Guid id)
         {
             try

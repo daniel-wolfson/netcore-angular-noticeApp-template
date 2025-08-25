@@ -4,3 +4,66 @@
   padding: 1rem;
   text-align: center;
 }
+.app-header-header-bg {
+  background: url('/map.jpg') center/cover no-repeat, #f7f7f7;
+  border: 1px solid #ccc;
+  padding: 0;
+  margin: 0;
+  min-height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-header-content {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 32px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.app-header-title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.app-header-whats-good {
+  font-style: italic;
+  font-size: 1.3rem;
+  color: #555;
+  flex: 0 0 33.33%;
+}
+
+.app-header-in-the-hood {
+  font-weight: bold;
+  font-size: 2rem;
+  color: #222;
+  letter-spacing: 1px;
+  margin-top: -4px;
+  flex: 0 0 66.66%;
+}
+
+.app-header-desc {
+  font-size: 1rem;
+  color: #555;
+  text-align: right;
+  max-width: 350px;
+  margin-left: 32px;
+}
+
+.app-header-content {
+  position: relative;
+}
+.app-header-content::before {
+  content: '';
+  position: absolute;
+  left: 40%;
+  top: 10%;
+  bottom: 10%;
+  width: 1px;
+  background: #ccc;
+}

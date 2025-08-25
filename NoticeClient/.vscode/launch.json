@@ -1,19 +1,28 @@
 {
+  // VS Code debugging for Angular 20
   "version": "0.2.0",
+"compounds": [
+    {
+      "name": "Angular Debug (Serve + Chrome)",
+      "configurations": ["ng serve", "Launch Chrome"]
+    }
+  ],
   "configurations": [
     {
-      "type": "edge",
+      "name": "ng serve",
+      "type": "node-terminal",
       "request": "launch",
-      "name": "localhost (Edge)",
-      "url": "http://localhost:62771",
-      "webRoot": "${workspaceFolder}"
+      "command": "ng serve",
+      "cwd": "${workspaceFolder}"
     },
     {
+      "name": "Launch Chrome",
       "type": "chrome",
       "request": "launch",
-      "name": "localhost (Chrome)",
-      "url": "http://localhost:62771",
-      "webRoot": "${workspaceFolder}"
+      //"preLaunchTask": "npm: test",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}",
+      "runtimeExecutable": "C:/Program Files/Google/Chrome/Application/chrome.exe"
     }
   ]
 }

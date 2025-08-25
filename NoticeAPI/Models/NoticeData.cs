@@ -16,6 +16,8 @@ namespace NoticeAPI.Models
         [StringLength(100)]
         public string Author { get; set; } = string.Empty;
 
+        public string? LocationInfo { get; set; }
+        
         public Location? Location { get; set; }
     }
 }

@@ -1,16 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
-import { AppFilterComponent } from '../app-filter/app-filter.component';
-import { AppHeaderComponent } from '../app-header/app-header.component';
-import { NoticeListComponent } from '../notice-list/notice-list.component';
-import { UserService } from '../../services/user.service';
-import { Notice } from '../../models/notice.model';
-import { NoticeFormComponent } from '../notice-form/notice-form.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { AppHeaderComponent } from './components/app-header/app-header.component';
+import { NoticeListComponent } from './components/notice-list/notice-list.component';
+import { UserService } from './services/user.service';
+import { Notice } from './models/notice.model';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app-home.component.html',
-  styleUrls: ['./app-home.component.scss'],
-  imports: [AppFilterComponent, AppHeaderComponent, NoticeListComponent, NoticeFormComponent],
+  templateUrl: './app-root.html',
+  imports: [SearchBarComponent, AppHeaderComponent, NoticeListComponent],
 })
 export class AppHomeComponent {
   showNoticeForm = false;
@@ -27,6 +25,11 @@ export class AppHomeComponent {
   onFormSubmit(): void {
     this.showNoticeForm = false;
     this.noticeListRef?.loadNotices();
+  }
+
+  openEditForm(notice: Notice): void {
+    this.editingNotice = notice;
+    this.showNoticeForm = true;
   }
 
   closeForm(): void {

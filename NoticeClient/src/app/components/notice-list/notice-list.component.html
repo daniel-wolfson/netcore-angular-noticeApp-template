@@ -20,65 +20,40 @@
 
   <!-- Notices Grid -->
   @if (notices && notices.length > 0) {
-  <div class="notices-grid">
-    @for(notice of notices | searchFilter : searchTerm : filterBy : filterValue; track notice.id) {
-    <div class="notice-card" [class.my-notice]="canEditOrDelete(notice)">
-      <div class="notice-header">
-        <h3 class="notice-title">{{ notice.title }}</h3>
-        <div class="notice-actions" *ngIf="canEditOrDelete(notice)">
-          <button
-            class="btn btn-sm btn-outline-primary"
-            (click)="openEditForm(notice)"
-            title="edit"
-          >
-            <i class="fas fa-edit"></i>
-          </button>
-          <button
-            class="btn btn-sm btn-outline-danger"
-            (click)="deleteNotice(notice)"
-            title="delete"
-          >
-            <i class="fas fa-trash"></i>
-          </button>
-        </div>
-      </div>
-      <div class="notice-content">
-        <p>{{ notice.content }}</p>
-      </div>
-      <div class="notice-footer">
-        <div class="notice-meta">
-          <span class="author">
-            <i class="fas fa-user"></i>
-            {{ notice.author }}
-          </span>
-          <span class="date">
-            <i class="fas fa-clock"></i>
-            {{ formatDate(notice.createdAt) }}
-          </span>
-          <span *ngIf="notice.location" class="location">
-            <i class="fas fa-map-marker-alt"></i>
-            עם מיקום
-          </span>
-        </div>
-      </div>
-    </div>
+  <div class="notices-grid" [style.grid-template-columns]="gridTemplateColumns">
+    @for(notice of notices | searchFilter : filterBy : searchTerm; track notice.id) {
+    <notice-item
+      [notice]="notice"
+      (deleteNoticeEvent)="deleteNotice($event)"
+      (editNoticeEvent)="openEditForm($event)"
+    >
+    </notice-item>
     }
   </div>
   }
 
   <!-- Empty State -->
-  @if(!loading && !error && (notices | searchFilter : searchTerm : filterBy : filterValue).length
-  === 0) {
+  @if(!loading && !error && (notices | searchFilter : filterBy : searchTerm).length === 0) {
   <div class="empty-state">
     <div class="empty-content">
       <i class="fas fa-clipboard-list empty-icon"></i>
       <h3>Notices not found</h3>
-      @if(searchTerm || filterValue !== 'all') {
+      @if(searchTerm) {
       <p>Try changing the search or filter conditions</p>
-      } @if(!searchTerm && filterValue === 'all') {
+      } @if(!searchTerm) {
       <p>Be the first to add a notice!</p>
       }
-      <button class="btn btn-primary" (click)="openCreateForm()">Add First Notice</button>
+    </div>
+  </div>
+  } @if(showNoticeForm) {
+  <div class="modal-overlay" (click)="onCloseForm()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <notice-form
+        [notice]="editingNotice"
+        [currentUser]="currentUser"
+        (formSubmit)="onFormSubmit()"
+        (formCancel)="onCloseForm()"
+      ></notice-form>
     </div>
   </div>
   }

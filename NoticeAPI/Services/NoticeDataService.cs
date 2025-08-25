@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Extensions.Configuration;
 using NoticeAPI.Interfaces;
 using NoticeAPI.Models;
 using System.Text.Json;
@@ -65,6 +66,8 @@ namespace NoticeAPI.Services
                     Content = noticeData.Content,
                     Author = noticeData.Author,
                     CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow,
+                    LocationInfo = noticeData.LocationInfo,
                     Location = noticeData.Location
                 };
 
@@ -99,6 +102,8 @@ namespace NoticeAPI.Services
                 existingNotice.Content = updatedNotice.Content;
                 existingNotice.Author = updatedNotice.Author;
                 existingNotice.Location = updatedNotice.Location;
+                existingNotice.LocationInfo = updatedNotice.LocationInfo;
+                existingNotice.UpdatedAt = DateTime.UtcNow;
 
                 await WriteNoticesAsync(notices);
 

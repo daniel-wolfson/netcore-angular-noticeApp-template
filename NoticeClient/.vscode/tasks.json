@@ -7,16 +7,14 @@
       "script": "start",
       "isBackground": true,
       "problemMatcher": {
-        "owner": "typescript",
-        "pattern": "$tsc",
+        "owner": "angular",
+        "pattern": {
+          "regexp": ".*"
+        },
         "background": {
           "activeOnStart": true,
-          "beginsPattern": {
-            "regexp": "(.*?)"
-          },
-          "endsPattern": {
-            "regexp": "bundle generation complete"
-          }
+          "beginsPattern": ".", 
+          "endsPattern": "Compiled successfully|Browser application bundle generation complete|Angular Live Development Server is listening"
         }
       }
     },

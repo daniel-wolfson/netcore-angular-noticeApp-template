@@ -8,6 +8,6 @@
 
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
-import { AppHomeComponent } from './app/components/app-home/app-home.component';
+import { AppHomeComponent } from './app/app-root';
 
 bootstrapApplication(AppHomeComponent, appConfig).catch((err) => console.error(err));
